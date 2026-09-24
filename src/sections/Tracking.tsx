@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion'
-import { Check, Search } from 'lucide-react'
+import { ArrowRight, Check, Search } from 'lucide-react'
 import { useState, type FormEvent } from 'react'
 import { Img } from '../components/Img'
 import { Reveal } from '../components/Reveal'
@@ -167,7 +167,7 @@ export function Tracking() {
         </div>
 
         {/* The six steps, as the reference shows them */}
-        <div className="no-scrollbar mt-14 flex gap-3 overflow-x-auto md:grid md:grid-cols-6 md:overflow-visible">
+        <div className="no-scrollbar mt-14 flex gap-3 overflow-x-auto md:grid md:grid-cols-6 md:gap-5 md:overflow-visible">
           {stages.map((st, i) => (
             <motion.a
               key={st.id}
@@ -176,7 +176,7 @@ export function Tracking() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '0px 0px -8% 0px' }}
               transition={{ duration: 0.5, delay: i * 0.07, ease: EASE }}
-              className="group w-[62vw] shrink-0 sm:w-[40vw] md:w-auto"
+              className="group relative w-[62vw] shrink-0 sm:w-[40vw] md:w-auto"
             >
               <span className="flex items-center gap-2">
                 <span className="font-mono text-[10.5px] tracking-[0.18em] text-amber">{st.n}</span>
@@ -188,6 +188,11 @@ export function Tracking() {
                 <span className="absolute inset-0 bg-gradient-to-t from-night/85 to-transparent" />
               </span>
               <span className="mt-2 block font-mono text-[10.5px] text-muted">{st.time}</span>
+              {i < stages.length - 1 && (
+                <span className="absolute top-[58%] -right-4 z-10 hidden h-7 w-7 place-items-center rounded-full border border-line bg-night text-amber md:grid">
+                  <ArrowRight className="h-3.5 w-3.5" strokeWidth={2} />
+                </span>
+              )}
             </motion.a>
           ))}
         </div>

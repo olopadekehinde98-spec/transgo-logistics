@@ -261,7 +261,7 @@ export const closing = {
     { value: 150, suffix: '+', label: 'Countries' },
     { value: 10000, suffix: '+', label: 'Happy customers' },
   ],
-  photo: { id: '1473445730015-841f29a9490b', alt: 'Freight truck running an open road under a dramatic sky' },
+  photo: { id: '1592838064575-70ed626d3a0e', alt: 'Freight truck running an open highway at golden hour' },
 }
 
 export const hero = {

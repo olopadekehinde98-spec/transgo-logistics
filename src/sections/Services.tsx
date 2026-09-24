@@ -83,13 +83,6 @@ export function Services() {
                 <div className="min-w-0">
                   <h3 className="font-display text-[1.1rem] leading-tight font-semibold tracking-[0.02em] uppercase">{s.title}</h3>
                   <p className="mt-2 text-[13px] leading-[1.6] text-muted">{s.text}</p>
-                  <ul className="mt-3 flex flex-wrap gap-1.5">
-                    {s.points.map((pt) => (
-                      <li key={pt} className="border border-line/80 bg-night/50 px-2 py-1 font-mono text-[10px] tracking-[0.1em] text-muted">
-                        {pt}
-                      </li>
-                    ))}
-                  </ul>
                 </div>
                 <button
                   type="button"

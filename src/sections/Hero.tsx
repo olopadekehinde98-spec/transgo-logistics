@@ -1,5 +1,5 @@
 import { motion, useTransform } from 'framer-motion'
-import { Box, CheckCircle2, Play, Ship, Truck, Warehouse } from 'lucide-react'
+import { ArrowRight, Box, CheckCircle2, Play, Ship, Truck, Warehouse } from 'lucide-react'
 import { useRef } from 'react'
 import { Img } from '../components/Img'
 import { SplitLines } from '../components/SplitLines'
@@ -25,10 +25,10 @@ export function Hero() {
   return (
     <section id="top" ref={ref} className="relative isolate flex min-h-[760px] flex-col justify-end overflow-hidden bg-night h-[100svh]">
       <motion.div className="absolute inset-0 -z-20" style={motionOK ? { y: bgY } : undefined}>
-        <Img photo={hero.photo} priority widths={[828, 1280, 1600]} className="opacity-55" />
+        <Img photo={hero.photo} priority widths={[828, 1280, 1600]} className="opacity-[0.88]" />
       </motion.div>
-      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-night via-night/80 to-night/55" />
-      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-night via-night/55 to-transparent" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-night via-night/55 to-night/15" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-night/95 via-night/55 to-transparent" />
 
       <motion.div className="frame relative flex-1 pt-32 pb-8 sm:pt-28" style={motionOK ? { opacity: fade } : undefined}>
         <div className="flex h-full flex-col justify-center">
@@ -92,14 +92,16 @@ export function Hero() {
             const Icon = stepIcons[i]
             return (
               <a key={s.id} href={`#${s.id}`} className="group flex shrink-0 items-center gap-3 sm:flex-1" aria-label={`Jump to stage ${s.n}: ${s.title}`}>
-                <span className="grid h-10 w-10 shrink-0 place-items-center border border-line text-amber transition-colors duration-300 group-hover:border-amber">
+                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-line bg-steel/70 text-amber transition-colors duration-300 group-hover:border-amber">
                   <Icon className="h-[18px] w-[18px]" strokeWidth={1.7} />
                 </span>
                 <span className="min-w-0">
                   <span className="block font-mono text-[10px] tracking-[0.2em] text-muted">{s.n}</span>
                   <span className="block truncate font-mono text-[11px] tracking-[0.14em] text-fog uppercase">{s.short}</span>
                 </span>
-                {i < stages.length - 1 && <span className="mx-1 hidden h-px w-6 shrink-0 bg-line xl:block" />}
+                {i < stages.length - 1 && (
+                  <ArrowRight className="mx-1 hidden h-3.5 w-3.5 shrink-0 text-muted/60 xl:block" strokeWidth={2} />
+                )}
               </a>
             )
           })}
