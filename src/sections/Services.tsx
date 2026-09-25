@@ -35,7 +35,7 @@ export function Services() {
             </p>
           </Reveal>
           <Reveal delay={0.12} className="flex items-center gap-4">
-            <button type="button" onClick={() => open({ kind: 'quote' })} className="group inline-flex items-center gap-2 font-mono text-[11.5px] tracking-[0.14em] text-amber uppercase">
+            <button type="button" onClick={() => open({ kind: 'quote' })} className="group inline-flex items-center gap-2 py-2.5 font-mono text-[11.5px] tracking-[0.14em] text-amber uppercase">
               Explore all services
               <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" strokeWidth={2} />
             </button>
