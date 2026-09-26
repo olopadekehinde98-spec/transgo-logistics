@@ -1,32 +1,36 @@
-# React + TypeScript + Vite
+# TransGo Global Logistics
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A shipment you can watch move. The page follows one consignment from the warehouse shelf to the front door, one stage per scroll. React 19 + TypeScript + Vite, Tailwind CSS v4, Framer Motion, Lucide icons.
 
-Currently, two official plugins are available:
+**Live:** https://transgo-logistics.vercel.app
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+> The working folder is named `meridian-freight` from an earlier draft; the brand, the Vercel project and this repo are all TransGo.
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+npm install
+npm run dev      # http://localhost:5173
+npm run build    # production build in dist/
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## The journey
+
+`src/sections/` in scroll order: `Hero` → `JourneyIntro` → `StageWarehouse` → `StageRoad` → `StagePort` → `StageOcean` → `StageCustoms` → `StageLastMile` → `Tracking` → `Services` → `Network` → `Technology` → `FinalCTA`.
+
+Each stage pins itself through `StageShell`, which draws the placard and telemetry while the vehicle moves across the frame. `TrackerHUD` follows along, advancing the shipment status as each stage enters the viewport, and hides itself outside the journey.
+
+## Structure
+
+- `src/vehicles/` — the trucks, cranes, ships and planes are hand-built SVG components (`Road`, `Yard`, `SeaAir`), animated rather than drawn as images, so they stay sharp and weigh almost nothing.
+- `src/components/` — `Navbar`, `StageShell`, `TrackerHUD`, `Globe` (orthographic projection with cargo dots travelling the arcs via `offsetPath`), `QuoteDrawer`, `Img`, `SplitLines`, `Reveal`, `Footer`.
+- `src/data/content.ts` — stages, services, network nodes and all copy. `worldDots.ts` is a pre-computed land-dot grid generated offline, so no map library ships to the browser.
+- `src/hooks/` — `useSectionProgress`, `useCountUp`, `useMediaQuery`.
+- `src/lib/` — `image.ts` (Unsplash CDN URLs + `srcset`), `ui.ts` (easing, scroll helpers, quote-drawer state).
+- Design tokens live in the `@theme` block of `src/index.css` — Tailwind v4, so there is no `tailwind.config.js`.
+
+## Notes
+
+`useSectionProgress` wraps `useScroll` in an identity `useTransform`, which keeps Framer from handing scroll-linked values to the browser's native ScrollTimeline where multi-stop ranges desync.
+
+Stage content is padded left on extra-large screens so the pinned tracker HUD never covers it. Motion respects `prefers-reduced-motion` through `MotionConfig reducedMotion="user"`.
+
+Images are served from the Unsplash CDN with a blurred low-quality placeholder behind each one; swap the photo ids in `content.ts` for the client's own photography before launch.
