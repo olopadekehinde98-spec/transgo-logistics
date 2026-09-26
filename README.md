@@ -4,6 +4,8 @@ A shipment you can watch move. The page follows one consignment from the warehou
 
 **Live:** https://transgo-logistics.vercel.app
 
+![TransGo Global Logistics](docs/hero.jpg)
+
 > The working folder is named `meridian-freight` from an earlier draft; the brand, the Vercel project and this repo are all TransGo.
 
 ```bash
@@ -34,3 +36,9 @@ Each stage pins itself through `StageShell`, which draws the placard and telemet
 Stage content is padded left on extra-large screens so the pinned tracker HUD never covers it. Motion respects `prefers-reduced-motion` through `MotionConfig reducedMotion="user"`.
 
 Images are served from the Unsplash CDN with a blurred low-quality placeholder behind each one; swap the photo ids in `content.ts` for the client's own photography before launch.
+
+## Screens
+
+| The global network | On a phone |
+| --- | --- |
+| ![The global network](docs/desktop.jpg) | ![TransGo Global Logistics on a phone](docs/mobile.jpg) |
