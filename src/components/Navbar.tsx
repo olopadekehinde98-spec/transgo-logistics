@@ -13,7 +13,7 @@ export function Logo({ className = '' }: { className?: string }) {
       </svg>
       <span className="font-display text-[1.05rem] leading-none font-semibold tracking-[0.22em]">
         {brand.name}
-        <span className="ml-1.5 font-mono text-[10px] tracking-[0.3em] text-muted">{brand.sub}</span>
+        <span className="ml-1.5 hidden font-mono text-[10px] tracking-[0.3em] text-muted sm:inline">{brand.sub}</span>
       </span>
     </span>
   )
@@ -94,7 +94,7 @@ export function Navbar() {
               <Search className="h-4 w-4" strokeWidth={1.6} />
               LOGIN
             </button>
-            <button type="button" onClick={() => open({ kind: 'quote' })} className="btn-amber px-4 py-2.5 text-[11.5px] sm:px-5">
+            <button type="button" onClick={() => open({ kind: 'quote' })} className="btn-amber hidden px-4 py-2.5 text-[11.5px] sm:inline-flex sm:px-5">
               Get a Quote
             </button>
             <button
